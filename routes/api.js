@@ -7,14 +7,14 @@ let express = require("express"),
 module.exports = function(app) {
     // route for scraping new articles
     app.get("/api/scrape", function (req, res) {
-        axios.get("http://www.floridasportsman.com/fishing/inshore-fishing/").then(function(response) {
+        axios.get("http://www.floridasportsman.com/fishing/fly-fishing/").then(function(response) {
             let $ = cheerio.load(response.data);
-            $($(".listingResult.small").get().reverse()).each(function(i, element) {
+            $($("li").get().reverse()).each(function(i, element) {
                 let result = {};
-                result.title = $(this).find(".article-name").text().trim();
-                result.url = $(this).find("a").attr("href");
-                result.summary = $(this).find("p.synopsis").text().trim();
-                result.img = $(this).find(".image-remove-reflow-container img").attr("data-src") ? $(this).find(".image-remove-reflow-container img").attr("data-src") : "https://vanilla.futurecdn.net/creativebloq/media/img/missing-image.svg";
+                result.title = $(element).find("h2").text();
+                result.url = $(element).find("a").attr("href");
+                result.author = $(element).find("span").text().trim();
+                result.img = $(element).find(".c-item").attr(".attachment-list-thumb-size-list-thumb wp-post-image") 
                 if (result.title !== "") {
                     // Create a new Article using the `result` object built from scraping
                     db.Article.create(result).then(function(dbArticle) {

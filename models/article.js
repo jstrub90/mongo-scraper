@@ -13,11 +13,11 @@ let ArticleSchema = new Schema({
     },
     author: {
         type: String,
-        required: true
+        required: false
     },
     img: {
         type: String,
-        required: true
+        required: false
     },
     saved: {
         type: Boolean,
