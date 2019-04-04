@@ -1,0 +1,27 @@
+{
+  "name": "mongo-scraper",
+  "version": "1.0.0",
+  "description": "scraping app that scrapes fishing articles from floridasportsman.com",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jstrub90/mongo-scraper.git"
+  },
+  "author": "jstrub90",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jstrub90/mongo-scraper/issues"
+  },
+  "homepage": "https://github.com/jstrub90/mongo-scraper#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "cheerio": "^1.0.0-rc.2",
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.2",
+    "mongoose": "^5.4.22"
+  }
+}
