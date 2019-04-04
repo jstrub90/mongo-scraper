@@ -1,0 +1,60 @@
+<main>
+    <div class="container-fluid but-fixed">
+        <div class="row d-flex justify-content-center mt-4">
+            <div class="col-12 text-center">
+                <h1 class="mb-3 text-white">Saved Articles</h1>
+                <h4 class="mb-5 text-white font-weight-light">A collection of articles saved by users.</h4>
+            </div>
+            <div class="col-md-10 col-lg-12">
+                {{#if article}}
+                    <div class="card-deck">
+                        {{#each article}}
+                            <div class="article card rounded-0 border-0">
+                                <div class="card-body">
+                                    <a class="thumb" href="{{this.url}}" target="_blank" rel="noreferrer noopener" style="background-image: url({{this.img}});"></a>
+                                    <h5><a href="{{this.url}}" target="_blank" rel="noreferrer noopener">{{this.title}}</a></h5>
+                                    <p class="text-muted font-weight-light mb-0">{{this.author}}</p>
+                                </div>
+                                <div class="card-footer text-right">
+                                    {{#if this.saved}}
+                                        <small class="text-muted font-weight-light float-left info-icon"><i class="material-icons">favorite</i></small>
+                                    {{/if}}
+                                    {{#if this.notes.length}}
+                                        <small class="text-muted font-weight-light float-left info-icon"><i class="material-icons note-icon">chat_bubble</i> <span class="note-count">{{this.notes.length}}</span></small>
+                                    {{/if}}
+                                    <a class="card-link add-note" href="/notes/{{this._id}}" data-id="{{this._id}}"><small class="text-muted font-weight-light">Add Note</small></a>
+                                    {{#if this.saved}}
+                                        <a class="card-link remove-article" href="#" data-id="{{this._id}}"><small class="text-muted font-weight-light">Unsave Article</small></a>
+                                    {{else}}
+                                        <a class="card-link save-article" href="#" data-id="{{this._id}}"><small class="text-muted font-weight-light">Save Article</small></a>
+
+                                    {{/if}}
+                                </div>
+                            </div>
+                        {{/each}}
+                    </div>
+                {{else}}
+                    <div class="text-center">
+                        <p>There's no saved articles yet...</p>
+                    </div>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</main>
+
+<div aria-hidden="true" class="modal fade" id="customer-modal" role="dialog" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="customer-name">What's Your Name?</label>
+                    <input id="customer-name" class="form-control" type="text" name="customerName">
+                </div>
+                <div class="form-group d-flex justify-content-end mb-0">
+                    <button class="btn btn-primary eat-btn" type="button">Continue</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,73 @@
+<main>
+    <div class="container-fluid but-fixed">
+        <div class="row d-flex justify-content-center mt-4">
+            <div class="col-md-10 col-lg-12">
+                {{#if article}}
+                    <div class="card-deck justify-content-center">
+                        <div class="article notes card rounded-0 border-0">
+                            <div class="card-body">
+                                <a class="thumb" href="{{article.url}}" target="_blank" rel="noreferrer noopener" style="background-image: url({{article.img}});"></a>
+                                <h5><a href="{{article.url}}" target="_blank" rel="noreferrer noopener">{{article.title}}</a></h5>
+                                <p class="text-muted font-weight-light mb-0">{{article.author}}</p>
+                            </div>
+                            <div class="card-footer text-right">
+                                {{#if article.saved}}
+                                    <small class="text-muted font-weight-light float-left info-icon"><i class="material-icons">favorite</i></small>
+                                {{/if}}
+                                {{#if article.notes.length}}
+                                    <small class="text-muted font-weight-light float-left info-icon"><i class="material-icons note-icon">chat_bubble</i> <span class="note-count">{{article.notes.length}}</span></small>
+                                {{/if}}
+                                {{#if article.saved}}
+                                    <a class="card-link remove-article" href="#" data-id="{{article._id}}"><small class="text-muted font-weight-light">Unsave Article</small></a>
+                                {{else}}
+                                    <a class="card-link save-article" href="#" data-id="{{article._id}}"><small class="text-muted font-weight-light">Save Article</small></a>
+
+                                {{/if}}
+                            </div>
+                        </div>
+                        {{#if article.notes}}
+                            <div class="notes add-notes card rounded-0 border-0" data-articleid="{{article._id}}">
+                                <div class="card-header">Added Notes</div>
+                                <ul class="list-group list-group-flush">
+                                    {{#each article.notes}}
+                                        <li class="list-group-item d-flex justify-content-between align-items-start" data-id="{{this._id}}">
+                                            <div class="">
+                                                <p class="mb-1">{{this.body}}</p>
+                                                <small class="text-muted">Added by: {{this.user}}</small>
+                                            </div>
+                                            <button type="button" class="close delete-note" data-noteid="{{this._id}}" data-articleid="{{../article._id}}">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </li>
+                                    {{/each}}
+                                </ul>
+                            </div>
+                        {{/if}}
+                        <div class="notes add-notes card rounded-0 border-0">
+                            <div class="card-header">Add New Note</div>
+                            <div class="card-body">
+                                <form action="#" method="post">
+                                    <div class="form-group">
+                                        <label for="customer-name">What's Your Name?</label>
+                                        <input id="user-name" class="form-control" type="text" name="customerName">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="customer-name">Comment</label>
+                                        <textarea id="note-body" class="form-control" type="text" name="customerName" rows="4"></textarea>
+                                    </div>
+                                    <div class="form-group d-flex justify-content-end mb-0">
+                                        <button class="btn btn-primary add-article-note" type="submit" data-id="{{article._id}}">Add Note</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                {{else}}
+                    <div class="text-center">
+                        <p>Something went wrong...</p>
+                    </div>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</main>
